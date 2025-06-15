@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sermons – Heaven Prophetic Deliverance Ministry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+  <!-- Header -->
+  <header class="bg-yellow-400 py-4 shadow flex justify-between items-center px-4">
+    <a href="index.html" class="text-xl font-bold text-red-700">Heaven Prophetic</a>
+    <button id="menuBtn" class="md:hidden text-red-700 text-2xl">☰</button>
+    <nav id="menu" class="hidden md:flex gap-4 text-red-800 font-semibold">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="ministries.html">Ministries</a>
+      <a href="sermons.html" class="underline">Sermons</a>
+      <a href="events.html">Events</a>
+      <a href="prayer.html">Prayer</a>
+    </nav>
+  </header>
+
+  <!-- Sermons -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold text-red-700 mb-6">Recent Sermons</h1>
+    
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="bg-yellow-100 p-4 rounded shadow">
+        <h2 class="text-xl font-bold text-red-700 mb-2">Breaking Chains of Bondage</h2>
+        <p class="text-sm mb-2">Preached by Prophet John Doe | June 9, 2025</p>
+        <audio controls class="w-full">
+          <source src="your-sermon-audio.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="bg-yellow-100 p-4 rounded shadow">
+        <h2 class="text-xl font-bold text-red-700 mb-2">Faith in the Fire</h2>
+        <p class="text-sm mb-2">Preached by Pastor Jane Smith | June 2, 2025</p>
+        <audio controls class="w-full">
+          <source src="your-sermon-audio2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <!-- Add more sermon cards as needed -->
+    </div>
+  </section>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      const menu = document.getElementById("menu");
+      menu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
