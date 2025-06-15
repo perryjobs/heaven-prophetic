@@ -2,7 +2,8 @@
 
 Welcome to the official website for **Heaven Prophetic Deliverance Ministry**, a Spirit-filled church dedicated to deliverance, prayer, healing, and the prophetic move of God.
 
-🌐 Live Site: [https://heaven-prophetic.github.io](https://heaven-prophetic.github.io)
+🌐 Live Site: [https://perryjobs.github.io/heaven-prophetic](https://perryjobs.github.io/heaven-prophetic)
+
 
 ---
 
