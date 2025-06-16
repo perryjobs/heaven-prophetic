@@ -56,19 +56,21 @@
     <div id="videoContainer" class="aspect-video w-full max-w-2xl mx-auto"></div>
   </main>
 
-  <script>
-    fetch("data/sermons.json")
+   <script>
+    fetch('sermons.json')
       .then(res => res.json())
       .then(data => {
-        const videoContainer = document.getElementById("videoContainer");
-        const embed = `
-          <iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(data.videoUrl)}&show_text=false&width=560"
-            width="100%" height="315" style="border:none;overflow:hidden" allowfullscreen scrolling="no"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>`;
-        videoContainer.innerHTML = embed;
-      })
-      .catch(() => {
-        document.getElementById("videoContainer").innerHTML = "<p>Video not available.</p>";
+        const container = document.getElementById('sermonList');
+        data.forEach(video => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+            <h2 class="text-xl font-bold text-yellow-600 mb-2">${video.title}</h2>
+            <div class="aspect-w-16 aspect-h-9">
+              <iframe class="w-full" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+            </div>
+          `;
+          container.appendChild(div);
+        });
       });
   </script>
 
