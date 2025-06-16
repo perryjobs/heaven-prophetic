@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: YOUR-USERNAME/YOUR-REPO-NAME
+  repo: perryjobs/heaven-prophetic
   branch: main
 
 media_folder: "images/uploads"
