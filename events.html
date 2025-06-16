@@ -51,58 +51,48 @@
     </ul>
   </nav>
 
-  <section class="max-w-4xl mx-auto px-6 py-12">
+   <main class="max-w-4xl mx-auto py-12 px-6">
     <h1 class="text-3xl font-bold text-red-700 mb-6">Upcoming Events</h1>
-
-    <div class="bg-yellow-100 p-6 rounded shadow text-center mb-6">
-      <h2 class="text-xl font-bold text-red-700 mb-2">🔥 Deliverance Crusade</h2>
-      <p class="mb-2">July 10, 2025 @ 6:00 PM</p>
-      <div id="countdown" class="text-2xl font-bold text-red-800"></div>
-    </div>
-
-    <div class="space-y-6">
-      <div class="bg-yellow-100 p-4 rounded shadow">
-        <h2 class="text-xl font-bold text-red-700">🎶 Youth Revival Night</h2>
-        <p class="text-sm">July 21, 2025 • 7:00 PM</p>
-        <p>Worship, drama, and spoken word by the youth ministry.</p>
-      </div>
-
-      <div class="bg-yellow-100 p-4 rounded shadow">
-        <h2 class="text-xl font-bold text-red-700">💒 Church Anniversary</h2>
-        <p class="text-sm">August 5–7, 2025 • 7:00 PM nightly</p>
-        <p>Join us in celebrating 10 years of ministry!</p>
-      </div>
-    </div>
-  </section>
+    <div id="countdown" class="text-xl font-semibold text-yellow-700 mb-6"></div>
+    <ul id="eventList" class="space-y-6"></ul>
+  </main>
 
   <script>
-    const menu = document.getElementById("sideMenu");
-    document.getElementById("menuBtn").onclick = () => menu.classList.add("open");
-    document.getElementById("closeMenu").onclick = () => menu.classList.remove("open");
+    fetch("data/events.json")
+      .then(res => res.json())
+      .then(events => {
+        const eventList = document.getElementById("eventList");
+        eventList.innerHTML = events.map(event => `
+          <li class="border-l-4 border-red-600 pl-4">
+            <h2 class="text-xl font-bold text-yellow-600">${event.title}</h2>
+            <p><strong>Date:</strong> ${event.date}</p>
+            <p><strong>Time:</strong> ${event.time}</p>
+            <p><strong>Location:</strong> ${event.location}</p>
+          </li>
+        `).join("");
 
-    // Countdown timer
-    function updateCountdown() {
-      const eventDate = new Date("July 10, 2025 18:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = eventDate - now;
+        // Countdown
+        const nextEvent = new Date(events[0].date + "T" + events[0].time);
+        const countdownEl = document.getElementById("countdown");
 
-      if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "The event is happening now!";
-        return;
-      }
+        function updateCountdown() {
+          const now = new Date();
+          const diff = nextEvent - now;
+          if (diff < 0) {
+            countdownEl.textContent = "The next event is happening now!";
+            return;
+          }
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          countdownEl.textContent = `Next event in ${days}d ${hours}h ${minutes}m`;
+        }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+      });
   </script>
+  
   <!-- Slide-in Menu Script -->
   <script>
     const sideMenu = document.getElementById("sideMenu");
