@@ -51,22 +51,26 @@
     </ul>
   </nav>
 
-  <section class="max-w-5xl mx-auto px-6 py-12">
-    <h1 class="text-3xl font-bold text-red-700 mb-6">Sermons</h1>
-    <div class="grid gap-8 md:grid-cols-2">
-      <div class="bg-yellow-100 p-4 rounded shadow">
-        <h2 class="text-xl font-bold text-red-700 mb-2">Deliverance in the Spirit</h2>
-        <p class="text-sm mb-2">Prophet John Doe | June 2025</p>
-        <iframe class="w-full h-60" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
-      </div>
+  <main class="max-w-3xl mx-auto py-12 px-6">
+    <h1 class="text-3xl font-bold text-red-700 mb-4">Latest Sermon</h1>
+    <div id="videoContainer" class="aspect-video w-full max-w-2xl mx-auto"></div>
+  </main>
 
-      <div class="bg-yellow-100 p-4 rounded shadow">
-        <h2 class="text-xl font-bold text-red-700 mb-2">God of Breakthrough</h2>
-        <p class="text-sm mb-2">Pastor Jane Smith | May 2025</p>
-        <iframe class="w-full h-60" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
+  <script>
+    fetch("data/sermons.json")
+      .then(res => res.json())
+      .then(data => {
+        const videoContainer = document.getElementById("videoContainer");
+        const embed = `
+          <iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(data.videoUrl)}&show_text=false&width=560"
+            width="100%" height="315" style="border:none;overflow:hidden" allowfullscreen scrolling="no"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>`;
+        videoContainer.innerHTML = embed;
+      })
+      .catch(() => {
+        document.getElementById("videoContainer").innerHTML = "<p>Video not available.</p>";
+      });
+  </script>
 
   <script>
     const menu = document.getElementById("sideMenu");
