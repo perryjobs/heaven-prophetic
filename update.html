@@ -3,45 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Update – Heaven Prophetic Deliverance Ministry</title>
+  <title>CMS – Update Content</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-800 font-sans p-6">
-  <h1 class="text-2xl font-bold text-red-700 mb-4">Update Sermon & Events</h1>
+<body class="p-6 bg-gray-100 text-gray-800 font-sans">
+  <h1 class="text-2xl font-bold text-red-700 mb-4">📺 Add New Sermon</h1>
+  <input id="videoTitle" placeholder="Title" class="border p-2 w-full mb-2"/>
+  <input id="videoURL" placeholder="Facebook Video URL or Embed Link" class="border p-2 w-full mb-2"/>
+  <button onclick="addSermon()" class="bg-yellow-400 px-4 py-2 text-red-700 font-bold">➕ Add Sermon</button>
 
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-2">New Facebook Video</h2>
-    <input id="videoInput" type="text" placeholder="Facebook Video URL" class="w-full border p-2 rounded mb-2">
-    <button onclick="generateVideoJson()" class="bg-yellow-500 text-white px-4 py-2 rounded">Generate Sermon JSON</button>
-    <pre id="videoJson" class="bg-gray-100 mt-4 p-2 rounded overflow-auto"></pre>
-  </section>
+  <hr class="my-6"/>
 
-  <section>
-    <h2 class="text-xl font-semibold mb-2">Add New Event</h2>
-    <input id="title" type="text" placeholder="Event Title" class="w-full border p-2 rounded mb-2">
-    <input id="date" type="date" class="w-full border p-2 rounded mb-2">
-    <input id="time" type="time" class="w-full border p-2 rounded mb-2">
-    <input id="location" type="text" placeholder="Location" class="w-full border p-2 rounded mb-2">
-    <button onclick="generateEventJson()" class="bg-red-500 text-white px-4 py-2 rounded">Generate Event JSON</button>
-    <pre id="eventJson" class="bg-gray-100 mt-4 p-2 rounded overflow-auto"></pre>
-  </section>
+  <h1 class="text-2xl font-bold text-red-700 mb-4">📅 Add New Event</h1>
+  <input id="eventTitle" placeholder="Event Title" class="border p-2 w-full mb-2"/>
+  <input id="eventDate" type="date" class="border p-2 w-full mb-2"/>
+  <input id="eventTime" placeholder="Time (e.g. 6:30 PM)" class="border p-2 w-full mb-2"/>
+  <button onclick="addEvent()" class="bg-yellow-400 px-4 py-2 text-red-700 font-bold">➕ Add Event</button>
+
+  <p class="text-sm text-gray-500 mt-6">Changes will need to be committed manually on GitHub.</p>
 
   <script>
-    function generateVideoJson() {
-      const url = document.getElementById("videoInput").value;
-      document.getElementById("videoJson").textContent = JSON.stringify({ videoUrl: url }, null, 2);
+    async function addSermon() {
+      const title = document.getElementById('videoTitle').value;
+      const url = document.getElementById('videoURL').value;
+      const res = await fetch('sermons.json');
+      const data = await res.json();
+      data.unshift({ title, url });
+      download('sermons.json', JSON.stringify(data, null, 2));
     }
 
-    function generateEventJson() {
-      const title = document.getElementById("title").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
-      const location = document.getElementById("location").value;
+    async function addEvent() {
+      const title = document.getElementById('eventTitle').value;
+      const date = document.getElementById('eventDate').value;
+      const time = document.getElementById('eventTime').value;
+      const res = await fetch('events.json');
+      const data = await res.json();
+      data.unshift({ title, date, time });
+      download('events.json', JSON.stringify(data, null, 2));
+    }
 
-      const event = { title, date, time, location };
-      document.getElementById("eventJson").textContent = JSON.stringify([event], null, 2);
+    function download(filename, text) {
+      const el = document.createElement('a');
+      el.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(text));
+      el.setAttribute('download', filename);
+      el.click();
     }
   </script>
 </body>
 </html>
-
