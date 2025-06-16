@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Update – Heaven Prophetic Deliverance Ministry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans p-6">
+  <h1 class="text-2xl font-bold text-red-700 mb-4">Update Sermon & Events</h1>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">New Facebook Video</h2>
+    <input id="videoInput" type="text" placeholder="Facebook Video URL" class="w-full border p-2 rounded mb-2">
+    <button onclick="generateVideoJson()" class="bg-yellow-500 text-white px-4 py-2 rounded">Generate Sermon JSON</button>
+    <pre id="videoJson" class="bg-gray-100 mt-4 p-2 rounded overflow-auto"></pre>
+  </section>
+
+  <section>
+    <h2 class="text-xl font-semibold mb-2">Add New Event</h2>
+    <input id="title" type="text" placeholder="Event Title" class="w-full border p-2 rounded mb-2">
+    <input id="date" type="date" class="w-full border p-2 rounded mb-2">
+    <input id="time" type="time" class="w-full border p-2 rounded mb-2">
+    <input id="location" type="text" placeholder="Location" class="w-full border p-2 rounded mb-2">
+    <button onclick="generateEventJson()" class="bg-red-500 text-white px-4 py-2 rounded">Generate Event JSON</button>
+    <pre id="eventJson" class="bg-gray-100 mt-4 p-2 rounded overflow-auto"></pre>
+  </section>
+
+  <script>
+    function generateVideoJson() {
+      const url = document.getElementById("videoInput").value;
+      document.getElementById("videoJson").textContent = JSON.stringify({ videoUrl: url }, null, 2);
+    }
+
+    function generateEventJson() {
+      const title = document.getElementById("title").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const location = document.getElementById("location").value;
+
+      const event = { title, date, time, location };
+      document.getElementById("eventJson").textContent = JSON.stringify([event], null, 2);
+    }
+  </script>
+</body>
+</html>
 
