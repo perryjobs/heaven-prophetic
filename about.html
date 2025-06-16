@@ -22,7 +22,6 @@
       <a href="events.html" class="text-red-800 hover:underline">Events</a>
       <a href="prayer.html" class="text-red-800 hover:underline">Prayer</a>
     </nav>
-
     </header>
 
   <!-- Slide-In Menu -->
@@ -52,6 +51,19 @@
     <h2 class="text-2xl font-bold text-yellow-600 mt-8 mb-2">Our Vision</h2>
     <p class="mb-4">To empower and equip believers to live victorious lives and impact their communities for God’s glory.</p>
   </section>
+<!-- Slide-in Menu Script -->
+  <script>
+    const sideMenu = document.getElementById("sideMenu");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeMenu = document.getElementById("closeMenu");
 
+    menuBtn.addEventListener("click", () => {
+      sideMenu.classList.add("open");
+    });
+
+    closeMenu.addEventListener("click", () => {
+      sideMenu.classList.remove("open");
+    });
+  </script>
 </body>
 </html>
