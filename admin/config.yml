@@ -2,6 +2,9 @@ backend:
   name: github
   repo: perryjobs/heaven-prophetic
   branch: main
+  auth_scope: repo
+  base_url: https://celadon-cassata-ffdfeb.netlify.app
+  auth_endpoint: /api/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
