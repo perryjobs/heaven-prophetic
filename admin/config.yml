@@ -1,3 +1,31 @@
 backend:
-  name: git-gateway
-  branch: main  # or 'master' depending on your repo
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+  branch: main
+  site_domain: https://YOUR_GITHUB_USERNAME.github.io
+  base_url: https://api.github.com
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "sermons"
+    label: "Sermons"
+    folder: "content/sermons"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "YouTube or Facebook Link", name: "video", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Event Name", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Details", name: "body", widget: "markdown" }
