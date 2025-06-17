@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>CMS Admin</title>
+  <!-- Include Decap CMS script via CDN -->
   <script src="https://unpkg.com/@decapcms/cli/dist/decapcms.js"></script>
 </head>
 <body>
   <script>
-    window.CMS.init({ config: '/admin/config.yml' });
+    // Initialize Decap CMS with your configuration
+    window.CMS.init({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'perryjobs/heaven-prophetic', // Replace with your GitHub repo
+          branch: 'main',             // Your branch
+        },
+        media_folder: 'static/uploads', // Media upload folder
+        public_folder: '/uploads',     // Public URL path
+        collections: [
+          {
+            name: 'blog',
+            label: 'Blog',
+            folder: 'content/blog',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Title', name: 'title', widget: 'string' },
+              { label: 'Publish Date', name: 'date', widget: 'datetime' },
+              { label: 'Body', name: 'body', widget: 'markdown' }
+            ]
+          }
+        ]
+      }
+    });
   </script>
 </body>
 </html>
