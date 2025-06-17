@@ -1,35 +1,48 @@
-backend:
-  name: github
-  repo: perryjobs/heaven-prophetic
-  branch: main
-  auth_scope: repo
-  base_url: https://celadon-cassata-ffdfeb.netlify.app
-  auth_endpoint: /api/auth
+<!-- /admin/index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Content Manager</title>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  </head>
+  <body>
+  </body>
+</html>
 
-media_folder: "images/uploads"
+---
+
+# /admin/config.yml
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads" # Folder for uploaded files
 public_folder: "/images/uploads"
 
 collections:
   - name: "sermons"
     label: "Sermons"
-    label_singular: "Sermon"
-    folder: "data/sermons"
+    folder: "content/sermons"
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "date", label: "Date", widget: "datetime" }
-      - { name: "video_url", label: "Facebook Video URL", widget: "string" }
-      - { name: "description", label: "Description", widget: "text" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Video URL", name: "video_url", widget: "string" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "events"
     label: "Events"
-    label_singular: "Event"
-    folder: "data/events"
+    folder: "content/events"
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: "title", label: "Title", widget: "string" }
-      - { name: "event_date", label: "Event Date", widget: "datetime" }
-      - { name: "location", label: "Location", widget: "string" }
-      - { name: "details", label: "Details", widget: "text" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Time", name: "time", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
