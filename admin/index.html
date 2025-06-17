@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Content Manager</title>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </head>
-  <body>
-    <script>
-      window.CMS_MANUAL_INIT = true;
-    </script>
-    <script>
-      CMS.init();
-    </script>
-  </body>
+<head>
+  <title>CMS Admin</title>
+  <script src="https://unpkg.com/@decapcms/cli/dist/decapcms.js"></script>
+</head>
+<body>
+  <script>
+    window.CMS.init({ config: '/admin/config.yml' });
+  </script>
+</body>
 </html>
