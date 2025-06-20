@@ -41,7 +41,7 @@ This is a modern, mobile-friendly church website built using **HTML** and **Tail
 
 - [Tailwind CSS CDN](https://tailwindcss.com/docs/installation/play-cdn) – For modern and responsive styling.
 - [GitHub Pages](https://pages.github.com/) – For free hosting.
-- [FormSubmit](https://formsubmit.co/) – For email-powered contact/prayer forms (no backend needed).
+- [FormSubmit](https://formsubmit.co/) – For email-powered contact/prayer forms.
 
 ---
 
